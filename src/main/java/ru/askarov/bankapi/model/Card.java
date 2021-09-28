@@ -16,6 +16,9 @@ public class Card {
     @JoinColumn(name = "Account_number", nullable = false)
     Account account;
 
+    @Version
+    private long version;
+
     protected Card() {
     }
 

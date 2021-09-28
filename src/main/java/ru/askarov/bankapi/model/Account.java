@@ -16,6 +16,9 @@ public class Account {
     @Column(name = "BALANCE")
     private BigDecimal balance;
 
+    @Version
+    private long version;
+
     @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     @CollectionTable(name = "CARDS")
     protected Set<Card> cards = new HashSet<>();
