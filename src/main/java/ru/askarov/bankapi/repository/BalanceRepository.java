@@ -1,20 +1,26 @@
 package ru.askarov.bankapi.repository;
 
 import org.springframework.stereotype.Repository;
-
-import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import ru.askarov.bankapi.model.Account;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 
 @Repository
+@Transactional
 public class BalanceRepository {
-    private final Map<Long, BigDecimal> storage = new HashMap<>();
 
-    public BigDecimal getBalanceForId(long accountId) {
-        return storage.get(accountId);
+    @PersistenceContext
+    private EntityManager entityManager;
+
+    public Account getAccount(long accountId) {
+        Account account = entityManager.find(Account.class, accountId);
+        if (account == null) throw new IllegalArgumentException("Номер счета не найден");
+
+        return account;
     }
 
-    public void save(long id, BigDecimal amount){
-        storage.put(id, amount);
+    public void saveAccount(Account account) {
+        entityManager.persist(account);
     }
 }

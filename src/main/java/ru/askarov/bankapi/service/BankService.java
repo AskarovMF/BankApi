@@ -2,10 +2,13 @@ package ru.askarov.bankapi.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import ru.askarov.bankapi.model.Account;
+import ru.askarov.bankapi.model.Card;
 import ru.askarov.bankapi.model.TransferBalance;
 import ru.askarov.bankapi.repository.BalanceRepository;
 
 import java.math.BigDecimal;
+import java.util.Set;
 
 @Service
 public class BankService {
@@ -17,34 +20,29 @@ public class BankService {
     }
 
     public BigDecimal getBalance(long accountId) {
-        BigDecimal balance = repository.getBalanceForId(accountId);
-        if (balance == null) {
-            throw new IllegalArgumentException();
-        }
-        return balance;
+        Account account = repository.getAccount(accountId);
+        return account.getBalance();
     }
 
-    public void makeTransfer(TransferBalance transferBalance) {
-        BigDecimal fromBalance = repository.getBalanceForId(transferBalance.getFrom());
-        BigDecimal toBalance = repository.getBalanceForId(transferBalance.getTo());
-        if (fromBalance == null || toBalance == null) throw new IllegalArgumentException("No ids");
-        if (transferBalance.getAmount().compareTo(fromBalance) > 0) throw new IllegalArgumentException("No money");
+    public void addBalance(TransferBalance transferBalance) {
+        if (transferBalance.getAmount() == null ||
+                (transferBalance.getAmount().compareTo(new BigDecimal(0))) < 0)
+            throw new IllegalArgumentException("Неверная сумма");
 
-        BigDecimal updatedFromBalance = fromBalance.subtract(transferBalance.getAmount());
-        BigDecimal updatedToBalance = toBalance.add(transferBalance.getAmount());
-        repository.save(transferBalance.getFrom(), updatedFromBalance);
-        repository.save(transferBalance.getTo(), updatedToBalance);
+        Account account = repository.getAccount(transferBalance.getTo());
+        BigDecimal amount = account.getBalance().add(transferBalance.getAmount());
+        account.setBalance(amount);
+        repository.saveAccount(account);
     }
 
-    public BigDecimal addMoney(Long to, BigDecimal amount) {
-        BigDecimal currentBalance = repository.getBalanceForId(to);
-        if (currentBalance == null) {
-            repository.save(to, amount);
-            return amount;
-        } else {
-            BigDecimal updatedBalance = repository.getBalanceForId(to).add(amount);
-            repository.save(to, updatedBalance);
-            return updatedBalance;
-        }
+    public void createCard(long numberAccount) {
+        Account account = repository.getAccount(numberAccount);
+        new Card(account);
+        repository.saveAccount(account);
+    }
+
+    public Set<Card> getAllCards(long numberAaccount) {
+        Account account = repository.getAccount(numberAaccount);
+        return account.getCards();
     }
 }

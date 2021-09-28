@@ -4,18 +4,16 @@ import lombok.AllArgsConstructor;
 
 import java.math.BigDecimal;
 
-@AllArgsConstructor
 public class TransferBalance {
-    private long from;
     private long to;
     private BigDecimal amount;
 
-    public Long getFrom() {
-        return from;
+    public TransferBalance() {
     }
 
-    public void setFrom(Long from) {
-        this.from = from;
+    public TransferBalance(long to, BigDecimal amount) {
+        this.to = to;
+        this.amount = amount;
     }
 
     public void setTo(Long to) {
