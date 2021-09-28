@@ -9,13 +9,14 @@ import java.util.*;
 public class Account {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NUMBER")
     private long account;
 
     @Column(name = "BALANCE")
     private BigDecimal balance;
 
-    @ElementCollection
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
     @CollectionTable(name = "CARDS")
     protected Set<Card> cards = new HashSet<>();
 
@@ -32,6 +33,10 @@ public class Account {
 
     public void addCard (Card card){
         cards.add(card);
+    }
+
+    public long getAccount() {
+        return account;
     }
 
     public Set<Card> getCards() {

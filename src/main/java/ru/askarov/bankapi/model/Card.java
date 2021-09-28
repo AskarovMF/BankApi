@@ -3,16 +3,24 @@ package ru.askarov.bankapi.model;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Embeddable
+@Entity
+@Table(name = "CARDS")
 public class Card {
 
+    @Id
+    @GeneratedValue (strategy = GenerationType.IDENTITY)
     @Column(name = "CARD_ID", nullable = false)
     private long number;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Account_number", nullable = false)
+    Account account;
 
     protected Card() {
     }
 
     public Card(Account account) {
+        this.account = account;
         account.addCard(this);
     }
 
@@ -20,8 +28,8 @@ public class Card {
         return number;
     }
 
-    public void setCardNumber(long cardNumber) {
-        this.number = cardNumber;
+    public long getAccountNumber(){
+        return account.getAccount();
     }
 
     @Override

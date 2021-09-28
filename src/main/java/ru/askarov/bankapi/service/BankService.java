@@ -37,8 +37,8 @@ public class BankService {
 
     public void createCard(long numberAccount) {
         Account account = repository.getAccount(numberAccount);
-        new Card(account);
-        repository.saveAccount(account);
+        Card card = new Card(account);
+        repository.saveCard(card);
     }
 
     public Set<Card> getAllCards(long numberAaccount) {

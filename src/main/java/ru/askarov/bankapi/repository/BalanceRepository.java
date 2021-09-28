@@ -2,8 +2,11 @@ package ru.askarov.bankapi.repository;
 
 import org.springframework.stereotype.Repository;
 import ru.askarov.bankapi.model.Account;
+import ru.askarov.bankapi.model.Card;
+
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 @Repository
@@ -22,5 +25,9 @@ public class BalanceRepository {
 
     public void saveAccount(Account account) {
         entityManager.persist(account);
+    }
+
+    public void saveCard(Card card) {
+        entityManager.persist(card);
     }
 }
