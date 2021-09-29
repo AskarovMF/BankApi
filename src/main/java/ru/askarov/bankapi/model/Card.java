@@ -27,6 +27,12 @@ public class Card {
         account.addCard(this);
     }
 
+    public Card(long number, Account account, long version) {
+        this.number = number;
+        this.account = account;
+        this.version = version;
+    }
+
     public long getCardNumber() {
         return number;
     }
