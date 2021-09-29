@@ -24,7 +24,7 @@ public class BankService {
         return account.getBalance();
     }
 
-    public void addBalance(TransferBalance transferBalance) {
+    public TransferBalance addBalance(TransferBalance transferBalance) {
         if (transferBalance.getAmount() == null ||
                 (transferBalance.getAmount().compareTo(new BigDecimal(0))) < 0)
             throw new IllegalArgumentException("Неверная сумма");
@@ -33,12 +33,14 @@ public class BankService {
         BigDecimal amount = account.getBalance().add(transferBalance.getAmount());
         account.setBalance(amount);
         repository.saveAccount(account);
+        return new TransferBalance(account.getAccount(), amount);
     }
 
-    public void createCard(long numberAccount) {
+    public Card createCard(long numberAccount) {
         Account account = repository.getAccount(numberAccount);
         Card card = new Card(account);
         repository.saveCard(card);
+        return card;
     }
 
     public Set<Card> getAllCards(long numberAaccount) {

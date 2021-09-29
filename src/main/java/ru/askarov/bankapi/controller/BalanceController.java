@@ -2,6 +2,8 @@ package ru.askarov.bankapi.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.askarov.bankapi.model.Card;
@@ -23,23 +25,25 @@ public class BalanceController {
     }
 
     @PostMapping("/createNewCard/{numberAccount}")
-    public void createNewCard(@PathVariable long numberAccount) {
-        bankService.createCard(numberAccount);
+    public ResponseEntity<Card> createNewCard(@PathVariable long numberAccount) {
+        Card card = bankService.createCard(numberAccount);
+        return ResponseEntity.ok(card);
     }
 
     @GetMapping("/getAllCards/{numberAccount}")
-    public Set<Card> getAllCards(@PathVariable long numberAccount){
-        return bankService.getAllCards(numberAccount);
+    public ResponseEntity<Set<Card>> getAllCards(@PathVariable long numberAccount){
+        return new ResponseEntity<>(bankService.getAllCards(numberAccount), HttpStatus.OK);
     }
 
     @PatchMapping("/addBalanceOnAccount")
-    public void transfer(@RequestBody TransferBalance transferBalance) {
-        bankService.addBalance(transferBalance);
+    public ResponseEntity<TransferBalance> transfer(@RequestBody TransferBalance transferBalance) {
+        TransferBalance transfer = bankService.addBalance(transferBalance);
+        return ResponseEntity.ok(transfer);
     }
 
     @GetMapping("/getBalanceOnAccount/{numberAccount}")
-    public BigDecimal getBalance(@PathVariable long numberAccount) {
-        return bankService.getBalance(numberAccount);
+    public ResponseEntity<BigDecimal> getBalance(@PathVariable long numberAccount) {
+        return new ResponseEntity<>(bankService.getBalance(numberAccount), HttpStatus.OK);
     }
 
     @ExceptionHandler(IllegalArgumentException.class)

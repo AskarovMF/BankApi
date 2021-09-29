@@ -1,7 +1,5 @@
 package ru.askarov.bankapi.model;
 
-import lombok.AllArgsConstructor;
-
 import java.math.BigDecimal;
 
 public class TransferBalance {
