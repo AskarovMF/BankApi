@@ -10,7 +10,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class BalanceRepository {
+public class BalanceRepository implements ru.askarov.bankapi.repository.Repository {
 
     @PersistenceContext
     private EntityManager entityManager;
