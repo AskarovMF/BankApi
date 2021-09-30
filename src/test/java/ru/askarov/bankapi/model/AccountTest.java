@@ -1,7 +1,5 @@
 package ru.askarov.bankapi.model;
 
-import org.junit.Assert;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -15,7 +13,7 @@ class AccountTest {
     private Account account;
 
     @BeforeEach
-    private void initAccount(){
+    private void initAccount() {
         account = new Account();
         account.setBalance(new BigDecimal(100));
         account.setAccount(1_000_000L);

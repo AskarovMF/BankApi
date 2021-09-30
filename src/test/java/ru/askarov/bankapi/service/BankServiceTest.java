@@ -1,11 +1,7 @@
 package ru.askarov.bankapi.service;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ArgumentsSource;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.mockito.Mockito;
 import ru.askarov.bankapi.model.Account;
 import ru.askarov.bankapi.model.Card;
@@ -15,7 +11,7 @@ import ru.askarov.bankapi.repository.BalanceRepository;
 import java.math.BigDecimal;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BankServiceTest {
     private Account account;

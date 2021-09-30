@@ -31,7 +31,7 @@ public class BalanceController {
     }
 
     @GetMapping("/getAllCards/{numberAccount}")
-    public ResponseEntity<Set<Card>> getAllCards(@PathVariable long numberAccount){
+    public ResponseEntity<Set<Card>> getAllCards(@PathVariable long numberAccount) {
         return new ResponseEntity<>(bankService.getAllCards(numberAccount), HttpStatus.OK);
     }
 
@@ -47,7 +47,7 @@ public class BalanceController {
     }
 
     @ExceptionHandler(IllegalArgumentException.class)
-    public String handle(IllegalArgumentException e){
+    public String handle(IllegalArgumentException e) {
         log.error(e.getMessage());
         return e.getMessage();
     }

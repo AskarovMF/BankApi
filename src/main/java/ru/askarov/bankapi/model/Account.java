@@ -2,7 +2,9 @@ package ru.askarov.bankapi.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.*;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "BANK_ACCOUNTS")
@@ -34,7 +36,7 @@ public class Account {
         this.balance = balance;
     }
 
-    public void addCard (Card card){
+    public void addCard(Card card) {
         cards.add(card);
     }
 
@@ -42,12 +44,12 @@ public class Account {
         return account;
     }
 
-    public Set<Card> getCards() {
-        return cards;
-    }
-
     public void setAccount(long account) {
         this.account = account;
+    }
+
+    public Set<Card> getCards() {
+        return cards;
     }
 
     @Override

@@ -2,16 +2,14 @@ package ru.askarov.bankapi.repository;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import ru.askarov.bankapi.model.Account;
 import ru.askarov.bankapi.model.Card;
-import ru.askarov.bankapi.service.BankService;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class BalanceRepositoryTest {
     private Account account;

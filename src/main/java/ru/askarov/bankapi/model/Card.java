@@ -7,17 +7,15 @@ import java.util.Objects;
 @Table(name = "CARDS")
 public class Card {
 
-    @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    @Column(name = "CARD_ID", nullable = false)
-    private long number;
-
-    @Version
-    private long version;
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "Account_number", nullable = false)
     protected Account account;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "CARD_ID", nullable = false)
+    private long number;
+    @Version
+    private long version;
 
     public Card() {
     }
@@ -37,7 +35,7 @@ public class Card {
         return number;
     }
 
-    public long getAccountNumber(){
+    public long getAccountNumber() {
         return account.getAccount();
     }
 
