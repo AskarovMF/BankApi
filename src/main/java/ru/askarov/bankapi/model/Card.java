@@ -19,7 +19,7 @@ public class Card {
     @JoinColumn(name = "Account_number", nullable = false)
     protected Account account;
 
-    protected Card() {
+    public Card() {
     }
 
     public Card(Account account) {
