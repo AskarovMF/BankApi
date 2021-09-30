@@ -28,11 +28,11 @@ class BankServiceTest {
         service = new BankService(repository);
         account = new Account();
 
-        account.setAccount(1_000_000);
+        account.setAccount(1_000_000L);
         account.setBalance(new BigDecimal(500));
         account.addCard(new Card());
 
-        Mockito.when(repository.getAccount(1_000_000)).thenReturn(account);
+        Mockito.when(repository.getAccount(1_000_000L)).thenReturn(account);
     }
 
     @Test
@@ -40,34 +40,34 @@ class BankServiceTest {
         BigDecimal res = service.getBalance(1_000_000L);
 
         assertEquals(new BigDecimal(500), res);
-        Mockito.verify(repository).getAccount(1_000_000);
+        Mockito.verify(repository).getAccount(1_000_000L);
     }
 
     @Test
     void addBalance() {
-        TransferBalance exp = new TransferBalance(1_000_000, new BigDecimal(600));
-        TransferBalance transfer = new TransferBalance(1_000_000, new BigDecimal(100));
+        TransferBalance exp = new TransferBalance(1_000_000L, new BigDecimal(600));
+        TransferBalance transfer = new TransferBalance(1_000_000L, new BigDecimal(100));
         TransferBalance actual = service.addBalance(transfer);
 
         assertEquals(exp, actual);
-        Mockito.verify(repository).getAccount(1_000_000);
+        Mockito.verify(repository).getAccount(1_000_000L);
         Mockito.verify(repository).saveAccount(account);
     }
 
     @Test
     void createCard() {
-        Card card = service.createCard(1_000_000);
+        Card card = service.createCard(1_000_000L);
 
-        assertEquals(1_000_000, card.getAccountNumber());
-        Mockito.verify(repository).getAccount(1_000_000);
+        assertEquals(1_000_000L, card.getAccountNumber());
+        Mockito.verify(repository).getAccount(1_000_000L);
         Mockito.verify(repository).saveCard(card);
     }
 
     @Test
     void getAllCards() {
-        Set<Card> cards = service.getAllCards(1_000_000);
+        Set<Card> cards = service.getAllCards(1_000_000L);
 
         assertEquals(1, cards.size());
-        Mockito.verify(repository).getAccount(1_000_000);
+        Mockito.verify(repository).getAccount(1_000_000L);
     }
 }
