@@ -29,12 +29,4 @@ public class TransferBalance {
     public BigDecimal getAmount() {
         return amount;
     }
-
-    @Override
-    public String toString() {
-        return "TransferBalance{" +
-                "to=" + to +
-                ", amount=" + amount +
-                '}';
-    }
 }
