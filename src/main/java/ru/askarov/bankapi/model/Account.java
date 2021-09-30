@@ -46,6 +46,9 @@ public class Account {
         return cards;
     }
 
+    public void setAccount(long account) {
+        this.account = account;
+    }
 
     @Override
     public boolean equals(Object o) {
