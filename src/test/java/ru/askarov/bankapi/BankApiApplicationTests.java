@@ -28,51 +28,51 @@ class BankApiApplicationTests {
 
     @Test
     public void testGetBalanceOnAccount() throws Exception{
-        mvc.perform(get("/getBalanceOnAccount/1000"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("111.00"));
+        mvc.perform(get("/getBalanceOnAccount/1000")).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("111.00"));
     }
 
     @Test
     public void testGetBalanceWithWrongAccount() throws Exception{
-        mvc.perform(get("/getBalanceOnAccount/0"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("Номер счета не найден"));
+        mvc.perform(get("/getBalanceOnAccount/0")).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("Номер счета не найден"));
     }
 
     @Test
     public void testCreateNewCard() throws Exception{
-        mvc.perform(post("/createNewCard/1000"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().json("{\"cardNumber\":1008,\"accountNumber\":1000}"));
+        mvc.perform(post("/createNewCard/1000")).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().json("{\"cardNumber\":1008,\"accountNumber\":1000}"));
     }
 
     @Test
     public void testCreateNewCardWithWrongAccount() throws Exception{
-        mvc.perform(post("/createNewCard/0"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("Номер счета не найден"));
+        mvc.perform(post("/createNewCard/0")).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("Номер счета не найден"));
     }
 
     @Test
     public void testGetAllCards() throws Exception{
-        mvc.perform(get("/getAllCards/1001"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().json("[{\"accountNumber\":1001,\"cardNumber\":1000}," +
-                        "{\"accountNumber\":1001,\"cardNumber\":1001}]"));
+        mvc.perform(get("/getAllCards/1001")).
+                andDo(print()).
+                andExpect(status().isOk()).
+                andExpect(content().json("[{\"accountNumber\":1001,\"cardNumber\":1000}," +
+                                                    "{\"accountNumber\":1001,\"cardNumber\":1001}]"));
     }
 
     @Test
     public void testGetAllCardsWithWrongAccount() throws Exception{
-        mvc.perform(get("/getAllCards/-1"))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("Номер счета не найден"));
+        mvc.perform(get("/getAllCards/-1")).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("Номер счета не найден"));
     }
 
     @Test
@@ -80,15 +80,17 @@ class BankApiApplicationTests {
         TransferBalance balance = new TransferBalance();
         balance.setTo(1000L);
         balance.setAmount(new BigDecimal(500));
+
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(SerializationFeature.WRAP_ROOT_VALUE, false);
+
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson=ow.writeValueAsString(balance );
 
-        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().json("{\"to\":1000,\"amount\":611}]"));
+        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson)).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().json("{\"to\":1000,\"amount\":611}]"));
     }
 
     @Test
@@ -101,10 +103,10 @@ class BankApiApplicationTests {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson=ow.writeValueAsString(balance );
 
-        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("Номер счета не найден"));
+        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson)).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("Номер счета не найден"));
     }
 
     @Test
@@ -117,10 +119,10 @@ class BankApiApplicationTests {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson=ow.writeValueAsString(balance );
 
-        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("Неверная сумма"));
+        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson)).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("Неверная сумма"));
     }
 
     @Test
@@ -133,9 +135,9 @@ class BankApiApplicationTests {
         ObjectWriter ow = mapper.writer().withDefaultPrettyPrinter();
         String requestJson=ow.writeValueAsString(balance );
 
-        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson))
-                .andDo(print())
-                .andExpect(status().isOk())
-                .andExpect(content().string("Неверная сумма"));
+        mvc.perform(patch("/addBalanceOnAccount").contentType(MediaType.APPLICATION_JSON).content(requestJson)).
+                    andDo(print()).
+                    andExpect(status().isOk()).
+                    andExpect(content().string("Неверная сумма"));
     }
 }

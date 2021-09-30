@@ -25,8 +25,8 @@ public class BankService {
     }
 
     public TransferBalance addBalance(TransferBalance transferBalance) {
-        if (transferBalance.getAmount() == null ||
-                (transferBalance.getAmount().compareTo(new BigDecimal(0))) < 0)
+        if (transferBalance.getAmount() == null
+                || (transferBalance.getAmount().compareTo(new BigDecimal(0))) < 0)
             throw new IllegalArgumentException("Неверная сумма");
 
         Account account = repository.getAccount(transferBalance.getTo());
