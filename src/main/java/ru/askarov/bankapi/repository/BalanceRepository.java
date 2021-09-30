@@ -22,7 +22,6 @@ public class BalanceRepository implements ru.askarov.bankapi.repository.Reposito
     protected BalanceRepository() {
     }
 
-
     public Account getAccount(long accountId) {
         Account account = entityManager.find(Account.class, accountId);
         if (account == null) throw new IllegalArgumentException("Номер счета не найден");

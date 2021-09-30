@@ -15,7 +15,7 @@ class CardTest {
     private void initCard() {
         account = new Account();
         account.setBalance(new BigDecimal(300));
-        account.setAccount(1_000_000);
+        account.setAccount(1_000_000L);
         card = new Card(account);
         card.setNumber(333_333);
     }
@@ -28,7 +28,7 @@ class CardTest {
 
     @Test
     void getAccountNumber() {
-        assertEquals(1_000_000, card.getAccountNumber());
+        assertEquals(1_000_000L, card.getAccountNumber());
         assertNotEquals(234, card.getAccountNumber());
     }
 
