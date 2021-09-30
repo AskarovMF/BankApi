@@ -8,6 +8,10 @@ import java.util.*;
 @Table(name = "BANK_ACCOUNTS")
 public class Account {
 
+    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
+    @CollectionTable(name = "CARDS")
+    protected Set<Card> cards = new HashSet<>();
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "NUMBER")
@@ -18,10 +22,6 @@ public class Account {
 
     @Version
     private long version;
-
-    @OneToMany(mappedBy = "account", fetch = FetchType.LAZY)
-    @CollectionTable(name = "CARDS")
-    protected Set<Card> cards = new HashSet<>();
 
     public Account() {
     }

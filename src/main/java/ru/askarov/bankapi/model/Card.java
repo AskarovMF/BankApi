@@ -12,12 +12,12 @@ public class Card {
     @Column(name = "CARD_ID", nullable = false)
     private long number;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "Account_number", nullable = false)
-    Account account;
-
     @Version
     private long version;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "Account_number", nullable = false)
+    protected Account account;
 
     protected Card() {
     }
