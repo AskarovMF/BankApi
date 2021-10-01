@@ -4,7 +4,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.askarov.bankapi.model.Card;
 import ru.askarov.bankapi.model.TransferBalance;
@@ -13,7 +12,6 @@ import ru.askarov.bankapi.service.BankService;
 import java.math.BigDecimal;
 import java.util.Set;
 
-@Controller
 @Slf4j
 @RestController("/balance")
 public class BalanceController {
