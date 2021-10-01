@@ -10,7 +10,7 @@ public interface BankServiceAccount {
 
     BigDecimal getBalance(long accountId);
 
-    public TransferBalance addBalance(TransferBalance transferBalance);
+    TransferBalance addBalance(TransferBalance transferBalance);
 
-    public Set<Card> getAllCards(long numberAaccount);
+    Set<Card> getAllCards(long numberAaccount);
 }

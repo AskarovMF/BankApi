@@ -15,20 +15,20 @@ public class TransferBalance {
         this.amount = amount;
     }
 
-    public void setTo(Long to) {
-        this.to = to;
-    }
-
-    public void setAmount(BigDecimal amount) {
-        this.amount = amount;
-    }
-
     public long getTo() {
         return to;
     }
 
+    public void setTo(Long to) {
+        this.to = to;
+    }
+
     public BigDecimal getAmount() {
         return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
     }
 
     @Override

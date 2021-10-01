@@ -4,5 +4,5 @@ import ru.askarov.bankapi.model.Card;
 
 public interface BankServiceCard {
 
-    public Card createCard(long numberAccount);
+    Card createCard(long numberAccount);
 }

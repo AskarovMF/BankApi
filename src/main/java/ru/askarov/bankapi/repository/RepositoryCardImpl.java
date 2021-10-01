@@ -9,7 +9,7 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class RepositoryCardImpl implements RepositoryCard{
+public class RepositoryCardImpl implements RepositoryCard {
 
     @PersistenceContext
     private EntityManager entityManager;

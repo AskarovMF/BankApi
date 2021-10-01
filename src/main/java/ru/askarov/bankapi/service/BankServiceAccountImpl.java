@@ -6,14 +6,12 @@ import ru.askarov.bankapi.model.Account;
 import ru.askarov.bankapi.model.Card;
 import ru.askarov.bankapi.model.TransferBalance;
 import ru.askarov.bankapi.repository.RepositoryAccount;
-import ru.askarov.bankapi.repository.RepositoryAccountImpl;
-import ru.askarov.bankapi.repository.RepositoryCard;
 
 import java.math.BigDecimal;
 import java.util.Set;
 
 @Service
-public class BankServiceAccountImpl implements BankServiceAccount{
+public class BankServiceAccountImpl implements BankServiceAccount {
     private final RepositoryAccount repositoryAccount;
 
     @Autowired

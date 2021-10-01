@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import ru.askarov.bankapi.model.Card;
 import ru.askarov.bankapi.model.TransferBalance;
 import ru.askarov.bankapi.service.BankServiceAccount;
-import ru.askarov.bankapi.service.BankServiceAccountImpl;
 import ru.askarov.bankapi.service.BankServiceCard;
 
 import java.math.BigDecimal;
