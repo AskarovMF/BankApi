@@ -23,7 +23,7 @@ class CardTest {
 
     @Test
     void getCardNumber() {
-        assertEquals(333_333, card.getCardNumber());
+        assertEquals(333_333, card.getNumber());
         assertNotEquals(555, card.getNumber());
     }
 

@@ -48,7 +48,7 @@ class BankApiApplicationTests {
         mvc.perform(post("/createNewCard/1000")).
                 andDo(print()).
                 andExpect(status().isOk()).
-                andExpect(content().json("{\"cardNumber\":1008,\"accountNumber\":1000}"));
+                andExpect(content().json("{\"number\":1008,\"accountNumber\":1000}"));
     }
 
     @Test
@@ -64,8 +64,8 @@ class BankApiApplicationTests {
         mvc.perform(get("/getAllCards/1001")).
                 andDo(print()).
                 andExpect(status().isOk()).
-                andExpect(content().json("[{\"accountNumber\":1001,\"cardNumber\":1000}," +
-                        "{\"accountNumber\":1001,\"cardNumber\":1001}]"));
+                andExpect(content().json("[{\"accountNumber\":1001,\"number\":1000}," +
+                        "{\"accountNumber\":1001,\"number\":1001}]"));
     }
 
     @Test
