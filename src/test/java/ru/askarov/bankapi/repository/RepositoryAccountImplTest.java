@@ -11,16 +11,16 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class BalanceRepositoryTest {
+class RepositoryAccountImplTest {
     private Account account;
-    private BalanceRepository repository;
+    private RepositoryAccountImpl repository;
     private Card card;
     private EntityManager entityManager;
 
     @BeforeEach
     private void initAccount() {
         entityManager = Mockito.mock(EntityManager.class);
-        repository = new BalanceRepository(entityManager);
+        repository = new RepositoryAccountImpl(entityManager);
         account = new Account();
         card = new Card(account);
 

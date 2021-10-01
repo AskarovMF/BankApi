@@ -10,16 +10,16 @@ import javax.transaction.Transactional;
 
 @Repository
 @Transactional
-public class BalanceRepository implements ru.askarov.bankapi.repository.Repository {
+public class RepositoryAccountImpl implements RepositoryAccount {
 
     @PersistenceContext
     private EntityManager entityManager;
 
-    public BalanceRepository(EntityManager entityManager) {
+    public RepositoryAccountImpl(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
 
-    protected BalanceRepository() {
+    protected RepositoryAccountImpl() {
     }
 
     public Account getAccount(long accountId) {
